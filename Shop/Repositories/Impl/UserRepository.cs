@@ -21,7 +21,7 @@ namespace Shop.Repositories.Impl
         public Task<List<User>> GetBirthdayUsers(DateTime date)
             => DbContext.Users
                 .Include(x => x.Purchases)
-                .Where(x => x.BirthDate == date)
+                .Where(x => x.BirthDate.Month == date.Month && x.BirthDate.Day == date.Day)
                 .ToListAsync();
 
         public Task<List<User>> GetLastBuyers(uint days)
